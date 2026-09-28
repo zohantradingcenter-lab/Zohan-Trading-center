@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { Phone, Mail, Clock, Send, MessageCircle, MapPin, CheckCircle } from 'lucide-react';
 import { OFFICE_LOCATIONS, COMPANY_INFO } from '../data/mockData';
+import { OfficeLocation, CompanyInfo, InquiryLead } from '../types';
 
-export const ContactSection: React.FC = () => {
-  const [activeOfficeTab, setActiveOfficeTab] = useState<'Islamabad' | 'Lahore' | 'Karachi'>('Islamabad');
+interface ContactSectionProps {
+  officeLocations?: OfficeLocation[];
+  companyInfo?: CompanyInfo;
+  onSubmitInquiry?: (data: InquiryLead) => void;
+}
+
+export const ContactSection: React.FC<ContactSectionProps> = ({
+  officeLocations = OFFICE_LOCATIONS,
+  companyInfo = COMPANY_INFO,
+  onSubmitInquiry,
+}) => {
+  const [activeOfficeTab, setActiveOfficeTab] = useState<'Lahore' | 'Islamabad' | 'Karachi'>('Lahore');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
-    city: 'Islamabad',
+    city: 'Lahore',
     service: 'Construction & Turnkey Contracting',
     message: '',
   });
@@ -18,10 +29,25 @@ export const ContactSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
+
+    if (onSubmitInquiry) {
+      onSubmitInquiry({
+        id: 'inq-contact-' + Date.now(),
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        city: formData.city,
+        service: formData.service,
+        message: formData.message,
+        createdAt: new Date().toISOString(),
+        status: 'New',
+      });
+    }
+
     setSubmitted(true);
   };
 
-  const currentOffice = OFFICE_LOCATIONS.find((o) => o.city === activeOfficeTab) || OFFICE_LOCATIONS[0];
+  const currentOffice = officeLocations.find((o) => o.city === activeOfficeTab) || officeLocations[0];
 
   return (
     <section id="contact" className="py-20 sm:py-24 bg-navy-950 text-white relative">

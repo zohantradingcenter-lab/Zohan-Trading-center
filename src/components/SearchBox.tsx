@@ -6,9 +6,15 @@ interface SearchBoxProps {
   onSearch: (filters: SearchFilterState) => void;
   onReset: () => void;
   resultCount: number;
+  onOpenSellModal?: () => void;
 }
 
-export const SearchBox: React.FC<SearchBoxProps> = ({ onSearch, onReset, resultCount }) => {
+export const SearchBox: React.FC<SearchBoxProps> = ({
+  onSearch,
+  onReset,
+  resultCount,
+  onOpenSellModal,
+}) => {
   const [purpose, setPurpose] = useState<'All' | 'Buy' | 'Rent'>('All');
   const [city, setCity] = useState<string>('All');
   const [type, setType] = useState<string>('All');
@@ -38,58 +44,85 @@ export const SearchBox: React.FC<SearchBoxProps> = ({ onSearch, onReset, resultC
     onReset();
   };
 
+  const quickFilterSociety = (selectedCity: string, selectedType: string) => {
+    setCity(selectedCity);
+    setType(selectedType);
+    onSearch({
+      purpose: 'Buy',
+      city: selectedCity,
+      type: selectedType,
+      bedrooms: 'All',
+      minPrice: 'All',
+      maxPrice: 'All',
+    });
+  };
+
   return (
     <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-12">
-      <div className="bg-white rounded-xl shadow-2xl border border-slate-200/80 p-5 sm:p-7 backdrop-blur-xl">
-        {/* Purpose Tabs & Active Feedback */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-100">
-          <div className="inline-flex p-1 bg-slate-100/90 rounded-lg border border-slate-200">
-            <button
-              type="button"
-              onClick={() => setPurpose('All')}
-              className={`px-5 py-2 text-xs font-semibold rounded-md transition-all ${
-                purpose === 'All'
-                  ? 'bg-navy-950 text-gold-400 shadow-sm'
-                  : 'text-slate-600 hover:text-navy-900'
-              }`}
-            >
-              All Properties
-            </button>
-            <button
-              type="button"
-              onClick={() => setPurpose('Buy')}
-              className={`px-5 py-2 text-xs font-semibold rounded-md transition-all ${
-                purpose === 'Buy'
-                  ? 'bg-navy-950 text-gold-400 shadow-sm'
-                  : 'text-slate-600 hover:text-navy-900'
-              }`}
-            >
-              For Sale
-            </button>
-            <button
-              type="button"
-              onClick={() => setPurpose('Rent')}
-              className={`px-5 py-2 text-xs font-semibold rounded-md transition-all ${
-                purpose === 'Rent'
-                  ? 'bg-navy-950 text-gold-400 shadow-sm'
-                  : 'text-slate-600 hover:text-navy-900'
-              }`}
-            >
-              For Rent
-            </button>
+      <div className="bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-5 sm:p-7 backdrop-blur-xl">
+        {/* Purpose Tabs & Sell Property Switch */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex p-1 bg-slate-100 rounded-lg border border-slate-200">
+              <button
+                type="button"
+                onClick={() => setPurpose('All')}
+                className={`px-4 py-2 text-xs font-bold rounded-md transition-all ${
+                  purpose === 'All'
+                    ? 'bg-navy-950 text-gold-400 shadow-sm'
+                    : 'text-slate-600 hover:text-navy-900'
+                }`}
+              >
+                All (سب پراپرٹیز)
+              </button>
+              <button
+                type="button"
+                onClick={() => setPurpose('Buy')}
+                className={`px-4 py-2 text-xs font-bold rounded-md transition-all ${
+                  purpose === 'Buy'
+                    ? 'bg-navy-950 text-gold-400 shadow-sm'
+                    : 'text-slate-600 hover:text-navy-900'
+                }`}
+              >
+                For Sale (خریدیں)
+              </button>
+              <button
+                type="button"
+                onClick={() => setPurpose('Rent')}
+                className={`px-4 py-2 text-xs font-bold rounded-md transition-all ${
+                  purpose === 'Rent'
+                    ? 'bg-navy-950 text-gold-400 shadow-sm'
+                    : 'text-slate-600 hover:text-navy-900'
+                }`}
+              >
+                For Rent (کرایہ)
+              </button>
+            </div>
+
+            {onOpenSellModal && (
+              <button
+                type="button"
+                onClick={onOpenSellModal}
+                className="px-4 py-2 text-xs font-bold rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 transition-colors flex items-center gap-1.5 cursor-pointer"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Want to Sell? (اپنی پراپرٹی بیچیں)</span>
+              </button>
+            )}
           </div>
 
           <div className="flex items-center gap-3 text-xs text-slate-500">
-            <span className="font-medium text-navy-900">
-              {resultCount} {resultCount === 1 ? 'Property Available' : 'Properties Available'}
+            <span className="font-semibold text-navy-950">
+              {resultCount} {resultCount === 1 ? 'Verified Property' : 'Verified Properties'}
             </span>
+            <span className="text-slate-300">|</span>
             <button
               type="button"
               onClick={handleReset}
               className="inline-flex items-center gap-1 text-slate-500 hover:text-navy-950 transition-colors"
             >
               <RefreshCw className="w-3.5 h-3.5" />
-              <span>Reset Filters</span>
+              <span>Reset</span>
             </button>
           </div>
         </div>

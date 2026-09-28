@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Star, Quote, ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 import { TESTIMONIALS, FAQ_LIST } from '../data/mockData';
+import { FAQItem } from '../types';
 
-export const Testimonials: React.FC = () => {
+interface TestimonialsProps {
+  faqs?: FAQItem[];
+}
+
+export const Testimonials: React.FC<TestimonialsProps> = ({ faqs = FAQ_LIST }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const toggleFaq = (index: number) => {
@@ -77,7 +82,7 @@ export const Testimonials: React.FC = () => {
           </div>
 
           <div className="space-y-4">
-            {FAQ_LIST.map((faq, idx) => (
+            {faqs.map((faq, idx) => (
               <div
                 key={idx}
                 className="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden transition-all"

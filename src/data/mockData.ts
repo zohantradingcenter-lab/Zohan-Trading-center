@@ -1,15 +1,19 @@
-import { Property, Project, Testimonial, OfficeLocation } from '../types';
+import { Property, Project, Testimonial, OfficeLocation, MarketRateItem, SellPropertySubmission, InquiryLead, HeroContent, AboutContent, ConstructionRateItem } from '../types';
 
 import heroVillaImg from '../assets/images/hero_luxury_villa_1790537322140.jpg';
 import aboutTowerImg from '../assets/images/about_commercial_tower_1790537336615.jpg';
 import projectHeightsImg from '../assets/images/project_khan_heights_1790537350879.jpg';
 import projectVillasImg from '../assets/images/project_khan_villas_1790537361856.jpg';
+import logoImg from '../assets/images/khan_brothers_logo_1790545610130.jpg';
+
+export { logoImg };
 
 export const COMPANY_INFO = {
   name: 'Khan Brothers & Builders',
-  tagline: 'Building Dreams. Creating Futures.',
-  subheading: 'Your trusted partner for premium properties, modern construction, and smart real estate investments.',
-  trustStatement: 'Trusted Real Estate & Construction Solutions',
+  tagline: 'Real Estate Buy & Sell Experts | پراپرٹی خرید و فروخت کا بااعتماد ادارہ',
+  urduTagline: 'پراپرٹی خرید و فروخت اور جدید تعمیرات',
+  subheading: 'Looking to Buy your dream property or Sell at peak market value? We connect verified buyers and sellers across Lahore, Islamabad, Rawalpindi, and Karachi with 100% legal security.',
+  trustStatement: 'Registered Real Estate Agency & Turnkey Builders | 100% Verified Deals',
   experienceYears: '15+',
   completedProjects: '450+',
   happyClients: '2,800+',
@@ -18,8 +22,95 @@ export const COMPANY_INFO = {
   whatsapp: '+92 306 8700693',
   whatsappDirect: '923068700693',
   email: 'info@khanbrothersbuilders.com',
+  address: 'Ferozepur Road, Nishtar Colony, Near Wahdat Hospital, Lahore',
+  urduAddress: 'فیروز پور روڈ، نشتر کالونی، نزد وحدت ہسپتال، لاہور',
   workingHours: 'Mon - Sat: 9:00 AM - 7:00 PM',
 };
+
+export const INITIAL_HERO_CONTENT: HeroContent = {
+  badge: 'پراپرٹی خرید و فروخت اور جدید تعمیرات · Real Estate Buy & Sell Agency',
+  title: 'Buy & Sell Premium Properties',
+  highlightedTitle: 'With 100% Trust.',
+  urduSubtitle: 'ہم آپ کی پراپرٹی اچھے ریٹ پر فروخت کرواتے ہیں اور بہترین لوکیشن پر گھر و پلاٹ خریدنے میں مدد دیتے ہیں۔',
+  description: 'Whether you want to Buy your dream house or Sell your plot/villa at top market demand across Lahore, Islamabad, Rawalpindi & Karachi — Khan Brothers & Builders connects verified cash buyers and sellers safely.',
+  urgentNotice: 'Need Urgent Cash? We buy residential & commercial plots with direct cash payment within 48 hours.',
+};
+
+export const INITIAL_ABOUT_CONTENT: AboutContent = {
+  kicker: 'Pioneering Real Estate & Turnkey Builders',
+  heading: 'About Khan Brothers & Builders',
+  mainParagraph: 'Khan Brothers & Builders is one of Pakistan\'s most reputable and forward-thinking real estate development, investment, and construction firms. Headquartered at Ferozepur Road, Nishtar Colony, Lahore with operations nationwide.',
+  secondaryParagraph: 'We specialize in premium property sales and purchases, turnkey civil construction, high-yield commercial developments, and transparent overseas portfolio management. Our foundation rests upon four inviolable pillars: uncompromising structural quality, rigorous legal due diligence, cost transparency, and absolute customer satisfaction.',
+  experienceBadgeYears: '15+ Years',
+  experienceBadgeText: 'Of Uncompromising Industry Excellence',
+};
+
+export const MARKET_RATES: MarketRateItem[] = [
+  {
+    society: 'DHA Phase 2 (Sector A/B/C)',
+    city: 'Islamabad',
+    size: '1 Kanal Residential Plot',
+    priceRange: 'Rs 6.50 Cr - 9.50 Cr',
+    trend: 'Rising',
+    avgReturn: '14% p.a.',
+  },
+  {
+    society: 'DHA Phase 2 (Sector J/K)',
+    city: 'Islamabad',
+    size: '10 Marla Residential Plot',
+    priceRange: 'Rs 3.20 Cr - 4.25 Cr',
+    trend: 'High Demand',
+    avgReturn: '12% p.a.',
+  },
+  {
+    society: 'Bahria Town Phase 8',
+    city: 'Rawalpindi',
+    size: '10 Marla Residential Plot',
+    priceRange: 'Rs 1.45 Cr - 2.10 Cr',
+    trend: 'Rising',
+    avgReturn: '16% p.a.',
+  },
+  {
+    society: 'Bahria Town Phase 7 & 8',
+    city: 'Rawalpindi',
+    size: '5 Marla Brand New House',
+    priceRange: 'Rs 1.85 Cr - 2.45 Cr',
+    trend: 'High Demand',
+    avgReturn: '11% p.a.',
+  },
+  {
+    society: 'DHA Phase 6 & Phase 7',
+    city: 'Lahore',
+    size: '1 Kanal Residential Plot',
+    priceRange: 'Rs 4.80 Cr - 7.50 Cr',
+    trend: 'Rising',
+    avgReturn: '15% p.a.',
+  },
+  {
+    society: 'Sector B-17 (Multi Gardens)',
+    city: 'Islamabad',
+    size: '1 Kanal Plot',
+    priceRange: 'Rs 1.60 Cr - 2.40 Cr',
+    trend: 'Stable',
+    avgReturn: '18% p.a.',
+  },
+  {
+    society: 'Gulberg Greens (A & B Executive)',
+    city: 'Islamabad',
+    size: '4 Kanal Luxury Farmhouse Plot',
+    priceRange: 'Rs 7.50 Cr - 12.0 Cr',
+    trend: 'High Demand',
+    avgReturn: '20% p.a.',
+  },
+  {
+    society: 'DHA Phase 8 (Sahil Streets)',
+    city: 'Karachi',
+    size: '500 Sq Yds (1 Kanal) Plot',
+    priceRange: 'Rs 11.5 Cr - 16.0 Cr',
+    trend: 'Stable',
+    avgReturn: '10% p.a.',
+  },
+];
 
 export const PROPERTIES: Property[] = [
   {
@@ -292,6 +383,72 @@ export const PROPERTIES: Property[] = [
     ],
     developerApproved: 'CDA Farmhouse Scheme Approved',
   },
+  {
+    id: 'prop-9',
+    title: 'Urgent Sale: 5 Marla Level Plot - Direct Owner',
+    type: 'Plot',
+    purpose: 'Buy',
+    price: 8800000,
+    priceFormatted: 'Rs 88 Lakh',
+    urgentDeal: true,
+    directOwner: true,
+    installmentAvailable: false,
+    location: {
+      sector: 'Phase 8, Block G (Close to Boulevard)',
+      city: 'Rawalpindi',
+      area: 'Bahria Town Rawalpindi',
+    },
+    features: {
+      areaSize: '5 Marla (125 Sq Yds)',
+    },
+    image: heroVillaImg,
+    gallery: [heroVillaImg, projectVillasImg],
+    badges: ['Urgent Cash Deal', 'Direct Owner', 'Immediate Transfer'],
+    status: 'Ready for Possession',
+    description: 'Owner relocating abroad. Clean title, zero litigation, all development charges paid. 40ft wide paved road, underground electricity, immediate registry transfer.',
+    amenities: [
+      'Ready for Construction',
+      'Sui Gas & Electricity Available',
+      'Walking Distance to Commercial & Mosque',
+      'Direct Biometric Transfer',
+    ],
+    developerApproved: 'Bahria Town Authorized',
+  },
+  {
+    id: 'prop-10',
+    title: 'Brand New 10 Marla Double-Unit House (DHA Phase 2)',
+    type: 'House',
+    purpose: 'Buy',
+    price: 49500000,
+    priceFormatted: 'Rs 4.95 Crore',
+    urgentDeal: true,
+    directOwner: true,
+    installmentAvailable: true,
+    location: {
+      sector: 'DHA Phase 2, Sector J',
+      city: 'Islamabad',
+      area: 'DHA Islamabad',
+    },
+    features: {
+      bedrooms: 5,
+      bathrooms: 6,
+      areaSize: '10 Marla (250 Sq Yds)',
+      parkingSpaces: 2,
+      floors: 2,
+    },
+    image: projectVillasImg,
+    gallery: [projectVillasImg, heroVillaImg],
+    badges: ['Hot Deal', 'Direct Owner', 'Solid A+ Build'],
+    status: 'Ready for Possession',
+    description: 'Constructed under engineer supervision. Solid Ashwood, Turkish bathroom fittings, separate dual utility meters, ideal for two families or high rental income.',
+    amenities: [
+      'Independent Double Unit',
+      'Dual Electricity Meters',
+      'Imported Kitchen with Appliances',
+      'DHA Gated Security',
+    ],
+    developerApproved: 'DHA Islamabad Approved',
+  },
 ];
 
 export const PROJECTS: Project[] = [
@@ -470,8 +627,17 @@ export const TESTIMONIALS: Testimonial[] = [
 
 export const OFFICE_LOCATIONS: OfficeLocation[] = [
   {
+    city: 'Lahore',
+    name: 'Head Office - Nishtar Colony, Lahore',
+    address: 'Ferozepur Road, Nishtar Colony, Near Wahdat Hospital, Lahore',
+    phone: '+92 306 8700693',
+    mobile: '+92 306 8700693',
+    email: 'lahore@khanbrothersbuilders.com',
+    hours: 'Mon - Sat: 9:00 AM - 8:00 PM',
+  },
+  {
     city: 'Islamabad',
-    name: 'Head Office - Blue Area',
+    name: 'Regional Office - Blue Area',
     address: 'Suite 401-405, Executive Heights, Jinnah Avenue, Blue Area, Islamabad',
     phone: '+92 306 8700693',
     mobile: '+92 306 8700693',
@@ -479,22 +645,91 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     hours: 'Mon - Sat: 9:00 AM - 7:00 PM',
   },
   {
-    city: 'Lahore',
-    name: 'Regional Office - DHA Phase 6',
-    address: 'Building 14-C, Main Boulevard, Commercial Zone, DHA Phase 6, Lahore',
-    phone: '+92 42 357 8200',
-    mobile: '+92 306 8700693',
-    email: 'lhr@khanbrothersbuilders.com',
-    hours: 'Mon - Sat: 9:30 AM - 6:30 PM',
-  },
-  {
     city: 'Karachi',
     name: 'Regional Office - Clifton',
     address: 'Plot 7, Khayaban-e-Iqbal, Block 4, Clifton, Karachi',
-    phone: '+92 21 358 1190',
+    phone: '+92 306 8700693',
     mobile: '+92 306 8700693',
     email: 'khi@khanbrothersbuilders.com',
     hours: 'Mon - Sat: 10:00 AM - 7:00 PM',
+  },
+];
+
+export const INITIAL_SELL_SUBMISSIONS: SellPropertySubmission[] = [
+  {
+    id: 'sub-1',
+    propertyType: 'Residential Plot',
+    purpose: 'Direct Cash Buyout',
+    city: 'Lahore',
+    society: 'Nishtar Colony / Ferozepur Road',
+    size: '10 Marla',
+    demandPrice: 'Rs 1.35 Crore',
+    ownerName: 'Malik Zeeshan',
+    phone: '+92 306 8700693',
+    isUrgent: true,
+    notes: 'Urgent cash buyout needed. Clear registry file, corner plot near main road.',
+    createdAt: '2026-09-27T10:30:00Z',
+    status: 'New',
+  },
+  {
+    id: 'sub-2',
+    propertyType: 'House / Villa',
+    purpose: 'Sell',
+    city: 'Lahore',
+    society: 'DHA Phase 6, Sector C',
+    size: '1 Kanal',
+    demandPrice: 'Rs 7.80 Crore',
+    ownerName: 'Chaudhry Kamran',
+    phone: '+92 321 4567890',
+    isUrgent: false,
+    notes: 'Brand new spanish double unit villa, ready for immediate possession.',
+    createdAt: '2026-09-26T14:15:00Z',
+    status: 'In Discussion',
+  },
+  {
+    id: 'sub-3',
+    propertyType: 'Commercial Plot',
+    purpose: 'Direct Cash Buyout',
+    city: 'Rawalpindi',
+    society: 'Bahria Town Phase 8, Sector C',
+    size: '5 Marla Commercial',
+    demandPrice: 'Rs 2.90 Crore',
+    ownerName: 'Syed Hamza Ali',
+    phone: '+92 300 8899112',
+    isUrgent: true,
+    notes: 'Direct owner file, all dues paid. Fast cash token expected.',
+    createdAt: '2026-09-25T16:45:00Z',
+    status: 'Contacted',
+  },
+];
+
+export const INITIAL_INQUIRIES: InquiryLead[] = [
+  {
+    id: 'inq-1',
+    name: 'Haji Muhammad Rizwan',
+    phone: '+92 306 8700693',
+    email: 'rizwan.trade@gmail.com',
+    city: 'Lahore',
+    service: 'Buy Luxury House / Villa',
+    message: 'Interested in 10 Marla or 1 Kanal house near Ferozepur Road or DHA. Budget around 4 to 6 Crore.',
+    preferredDate: '2026-09-29',
+    timeSlot: 'Morning (11:00 AM - 1:00 PM)',
+    targetPropertyTitle: 'Brand New 10 Marla Spanish Villa with Basement',
+    createdAt: '2026-09-27T11:00:00Z',
+    status: 'New',
+  },
+  {
+    id: 'inq-2',
+    name: 'Dr. Ayesha Siddiqui',
+    phone: '+92 333 5544332',
+    email: 'ayesha.sid@yahoo.com',
+    city: 'Islamabad',
+    service: 'Construction & Turnkey Contracting',
+    message: 'Looking for full turnkey construction of 1 Kanal plot in DHA Phase 2 Islamabad with Grade-60 steel.',
+    preferredDate: '2026-09-30',
+    timeSlot: 'Afternoon (2:00 PM - 4:00 PM)',
+    createdAt: '2026-09-26T09:20:00Z',
+    status: 'Contacted',
   },
 ];
 
@@ -516,3 +751,134 @@ export const FAQ_LIST = [
     answer: 'We provide a 10-year written structural guarantee against structural cracks or settlement, plus a 1-year complimentary maintenance warranty covering electrical, plumbing, and woodwork finishing.',
   },
 ];
+
+export const INITIAL_CONSTRUCTION_RATES: ConstructionRateItem[] = [
+  // WITH MATERIAL RATES
+  {
+    id: 'rate-mat-1',
+    category: 'with_material',
+    title: 'Grey Structure Construction (A+ Grade)',
+    urduTitle: 'گری اسٹرکچر ود میٹریل (اے پلس کوالٹی)',
+    ratePerUnit: 'Rs 3,100 / sq ft',
+    unit: 'Per Sq Ft',
+    rateNumeric: 3100,
+    description: 'Complete earthquake-resistant structure including excavation, foundation, beams, columns, brickwork, roof slab, and plaster.',
+    specs: ['Mughal 60-Grade Steel', 'Bestway/Maple Leaf Cement', 'Chenab Sand & Margalla Crush', 'A-Grade Solid Red Bricks', 'Termite Proofing (Bayer)'],
+  },
+  {
+    id: 'rate-mat-2',
+    category: 'with_material',
+    title: 'Standard Turnkey Finishing',
+    urduTitle: 'اسٹینڈرڈ مکمل فنشنگ ود میٹریل',
+    ratePerUnit: 'Rs 5,400 / sq ft',
+    unit: 'Per Sq Ft',
+    rateNumeric: 5400,
+    description: 'Complete move-in ready finishing with high-quality local materials, tiles, sanitary fittings, and woodwork.',
+    specs: ['Master / RAK Porcelain Tiles', 'Porta Sanitary & Fittings', 'Semi-Solid Ashwood Doors', 'Pakistan Cables Wiring', 'Berger/Dulux 3-Coat Paint'],
+  },
+  {
+    id: 'rate-mat-3',
+    category: 'with_material',
+    title: 'Executive Luxury A+ Finishing',
+    urduTitle: 'ایگزیکٹو لگژری اے پلس فنشنگ ود میٹریل',
+    ratePerUnit: 'Rs 7,200 / sq ft',
+    unit: 'Per Sq Ft',
+    rateNumeric: 7200,
+    description: 'Ultra-luxury modern finishing with European sanitaryware, imported Spanish porcelain, solid wood, and false ceilings.',
+    specs: ['Spanish / Italian Porcelain Tiles', 'Grohe / Kohler Sanitary', '100% Solid Ash/Teak Wood Doors', 'Schneider Electric Smart Switches', 'Corian Kitchen Countertops'],
+  },
+  {
+    id: 'rate-mat-4',
+    category: 'with_material',
+    title: 'Commercial Plaza / Tower Construction',
+    urduTitle: 'کمرشل پلازہ تعمیر ود میٹریل',
+    ratePerUnit: 'Rs 4,200 / sq ft',
+    unit: 'Per Sq Ft',
+    rateNumeric: 4200,
+    description: 'Heavy duty commercial Grade-60 structure designed for multi-story plazas, glass curtain walls, and maximum open floor spans.',
+    specs: ['High-Strength Raft Foundation', 'Commercial Glass Curtain Wall', 'Emergency Fire Staircase', 'Heavy Commercial Tiles', 'Lift Shaft Provision'],
+  },
+
+  // LABOR ONLY RATES
+  {
+    id: 'rate-lab-1',
+    category: 'labor_only',
+    title: 'Grey Structure Full Labor Package',
+    urduTitle: 'مکمل گری اسٹرکچر لیبر ریٹ (مزدوری)',
+    ratePerUnit: 'Rs 480 - 550 / sq ft',
+    unit: 'Per Covered Sq Ft',
+    description: 'Complete labor contracting including excavation, raft/footing, brickwork (چنائی), lintel shuttering, steel fixing, and internal/external plaster.',
+    specs: ['Foundation & Column Concreting', 'Solid Brick Masonry', 'Steel Binding & Shuttering', 'Level Float Plastering'],
+  },
+  {
+    id: 'rate-lab-2',
+    category: 'labor_only',
+    title: 'Brickwork & Masonry Labor (چنائی)',
+    urduTitle: 'اینٹ چنائی لیبر ریٹ',
+    ratePerUnit: 'Rs 45 - 55 / sq ft',
+    unit: 'Per Sq Ft Wall',
+    description: 'Professional brick masonry for 9-inch outer boundary and 4.5-inch internal partition walls with proper water curing.',
+    specs: ['9-inch Outer Wall Masonry', '4.5-inch Partition Walls', 'Water Curing Responsibility'],
+  },
+  {
+    id: 'rate-lab-3',
+    category: 'labor_only',
+    title: 'Plaster Work (Internal & External)',
+    urduTitle: 'پلستر لیبر ریٹ (اندرونی و بیرونی)',
+    ratePerUnit: 'Rs 35 - 45 / sq ft',
+    unit: 'Per Sq Ft',
+    description: 'Smooth float plastering on walls and ceilings with straight level lines and corner protection beads.',
+    specs: ['1:4 Cement Sand Ratio', 'Smooth Float Finish', 'Window & Door Edges Leveling'],
+  },
+  {
+    id: 'rate-lab-4',
+    category: 'labor_only',
+    title: 'Steel Fixing & Shuttering (سریا اور شٹرنگ)',
+    urduTitle: 'سریا باندھنا اور شٹرنگ لیبر ریٹ',
+    ratePerUnit: 'Rs 65 - 80 / sq ft',
+    unit: 'Per Slab Sq Ft',
+    description: 'Steel rebar cutting, bending, binding, and steel/wooden shuttering for foundation, columns, beams, and roof slabs.',
+    specs: ['Bending & Binding to Structural Drawing', 'Leak-proof Steel Shuttering', 'Level Checking Before Pour'],
+  },
+  {
+    id: 'rate-lab-5',
+    category: 'labor_only',
+    title: 'Tile & Marble Installation Labor',
+    urduTitle: 'ٹائل اور ماربل فکسنگ لیبر ریٹ',
+    ratePerUnit: 'Rs 55 - 75 / sq ft',
+    unit: 'Per Sq Ft Floor/Wall',
+    description: 'Laying and fixing of porcelain floor tiles, bathroom wall tiles, marble stairs with border Patti and diamond machine polish.',
+    specs: ['Laser Level Tile Alignment', 'Spacer Joint Filling', 'Marble Diamond Machine Polish'],
+  },
+  {
+    id: 'rate-lab-6',
+    category: 'labor_only',
+    title: 'Electric Wiring & Conduit Labor',
+    urduTitle: 'الیکٹرک وائرنگ لیبر ریٹ',
+    ratePerUnit: 'Rs 30 - 40 / sq ft',
+    unit: 'Per Covered Sq Ft',
+    description: 'Concealed PVC pipe laying in slab and walls, wire drawing, switchboard fixing, distribution box (DB) connection, and lighting.',
+    specs: ['Concealed Piping in Slab & Wall', 'Wire Pulling & Testing', 'Distribution Box (DB) Wiring'],
+  },
+  {
+    id: 'rate-lab-7',
+    category: 'labor_only',
+    title: 'Plumbing & Sanitary Fitting Labor',
+    urduTitle: 'پلمبنگ اور سینیٹری لیبر ریٹ',
+    ratePerUnit: 'Rs 35 - 45 / sq ft',
+    unit: 'Per Covered Sq Ft',
+    description: 'Complete PPRC hot/cold water supply piping, PVC sewerage drainage lines, underground/overhead tank connections, and sanitary fixture fitting.',
+    specs: ['PPRC Water Supply Pressure Testing', 'PVC Soil & Waste Drainage', 'Commode, Basin & Mixer Taps Fitting'],
+  },
+  {
+    id: 'rate-lab-8',
+    category: 'labor_only',
+    title: 'Paint, Polish & Distemper Labor',
+    urduTitle: 'رنگ و روغن اور پالش لیبر ریٹ',
+    ratePerUnit: 'Rs 25 - 35 / sq ft',
+    unit: 'Per Sq Ft Wall',
+    description: 'Surface preparation, 2 coats of wall putty, primer, and 3 coats of acrylic plastic emulsion paint, plus door lacquer polish.',
+    specs: ['Wall Putty Surface Sanding', '3-Coat Paint Application', 'Wood Doors Lacquer Polish'],
+  },
+];
+

@@ -7,18 +7,21 @@ interface PropertiesSectionProps {
   properties: Property[];
   onSelectProperty: (property: Property) => void;
   onScheduleViewing: (property: Property) => void;
+  onOpenSellModal?: () => void;
 }
 
 export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
   properties,
   onSelectProperty,
   onScheduleViewing,
+  onOpenSellModal,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
   const filteredProperties = properties.filter((item) => {
     if (activeCategory === 'All') return true;
     if (activeCategory === 'Buy') return item.purpose === 'Buy';
+    if (activeCategory === 'Urgent') return item.urgentDeal || item.badges.some(b => b.toLowerCase().includes('urgent') || b.toLowerCase().includes('hot'));
     if (activeCategory === 'Rent') return item.purpose === 'Rent';
     if (activeCategory === 'Houses') return item.type === 'House' || item.type === 'Villa';
     if (activeCategory === 'Apartments') return item.type === 'Apartment';
@@ -29,12 +32,12 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
 
   const categories = [
     { label: 'All Properties', key: 'All' },
-    { label: 'For Sale', key: 'Buy' },
-    { label: 'For Rent', key: 'Rent' },
+    { label: '⚡ Urgent Deals (ہاٹ ڈیلز)', key: 'Urgent' },
+    { label: 'For Sale (خریدیں)', key: 'Buy' },
+    { label: 'Plots (پلاٹس)', key: 'Plots' },
     { label: 'Houses & Villas', key: 'Houses' },
-    { label: 'Apartments', key: 'Apartments' },
-    { label: 'Commercial', key: 'Commercial' },
-    { label: 'Plots', key: 'Plots' },
+    { label: 'Commercial & Shops', key: 'Commercial' },
+    { label: 'For Rent', key: 'Rent' },
   ];
 
   return (
@@ -92,11 +95,21 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
 
                   {/* Purpose & Status Tag */}
-                  <div className="absolute top-3 left-3 flex items-center gap-2">
+                  <div className="absolute top-3 left-3 flex flex-wrap items-center gap-1.5">
                     <span className="px-2.5 py-1 rounded bg-navy-950/90 text-gold-400 text-xs font-bold uppercase tracking-wider backdrop-blur-xs border border-gold-500/30">
-                      {property.purpose === 'Buy' ? 'For Sale' : 'For Rent'}
+                      {property.purpose === 'Buy' ? 'For Sale (خریدیں)' : 'For Rent'}
                     </span>
-                    {property.badges[0] && (
+                    {property.urgentDeal && (
+                      <span className="px-2.5 py-1 rounded bg-red-600 text-white text-[11px] font-bold shadow-sm animate-pulse">
+                        ⚡ Urgent Sale
+                      </span>
+                    )}
+                    {property.directOwner && (
+                      <span className="px-2 py-0.5 rounded bg-emerald-600 text-white text-[10px] font-bold">
+                        Direct Owner
+                      </span>
+                    )}
+                    {!property.urgentDeal && property.badges[0] && (
                       <span className="px-2.5 py-1 rounded bg-gold-500 text-navy-950 text-xs font-bold backdrop-blur-xs">
                         {property.badges[0]}
                       </span>
@@ -214,6 +227,31 @@ export const PropertiesSection: React.FC<PropertiesSectionProps> = ({
               className="mt-4 px-5 py-2 bg-navy-950 text-gold-400 text-xs font-bold uppercase rounded"
             >
               Show All Properties
+            </button>
+          </div>
+        )}
+
+        {/* Sell Property Callout Banner for Owners */}
+        {onOpenSellModal && (
+          <div className="mt-14 rounded-2xl bg-gradient-to-r from-navy-950 via-navy-900 to-navy-950 p-6 sm:p-8 border border-gold-500/40 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+            <div className="max-w-2xl text-center md:text-left">
+              <span className="text-xs font-bold uppercase tracking-widest text-gold-400 block mb-1">
+                اپنی پراپرٹی فروخت کریں · Property Owners & Investors
+              </span>
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
+                Have a Plot, House, or Commercial Property to Sell?
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 mt-1">
+                We have overseas and local buyers actively looking for ready possession properties and plots. Get competitive cash offers within 48 hours.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={onOpenSellModal}
+              className="px-6 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-lg shrink-0 cursor-pointer"
+            >
+              + List Your Property Free (فروخت کے لیے دیں)
             </button>
           </div>
         )}

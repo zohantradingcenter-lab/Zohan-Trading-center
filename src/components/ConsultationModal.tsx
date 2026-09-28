@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { X, Calendar, Clock, CheckCircle, Send } from 'lucide-react';
-import { Property, Project } from '../types';
+import { Property, Project, InquiryLead } from '../types';
 
 interface ConsultationModalProps {
   isOpen: boolean;
   onClose: () => void;
   targetItem?: Property | Project | null;
   defaultService?: string;
+  onSubmit?: (data: InquiryLead) => void;
 }
 
 export const ConsultationModal: React.FC<ConsultationModalProps> = ({
@@ -14,6 +15,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   onClose,
   targetItem,
   defaultService,
+  onSubmit,
 }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -21,7 +23,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
     email: '',
     date: '',
     timeSlot: 'Morning (11:00 AM - 1:00 PM)',
-    city: 'Islamabad',
+    city: 'Lahore',
     notes: '',
   });
 
@@ -32,6 +34,25 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
+    
+    if (onSubmit) {
+      const itemTitle = targetItem ? ('title' in targetItem ? targetItem.title : targetItem.name) : undefined;
+      onSubmit({
+        id: 'inq-' + Date.now(),
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        city: formData.city,
+        service: itemTitle ? `Inquiry for ${itemTitle}` : (defaultService || 'General Real Estate Consultation'),
+        message: formData.notes,
+        preferredDate: formData.date,
+        timeSlot: formData.timeSlot,
+        targetPropertyTitle: itemTitle,
+        createdAt: new Date().toISOString(),
+        status: 'New',
+      });
+    }
+
     setSubmitted(true);
   };
 

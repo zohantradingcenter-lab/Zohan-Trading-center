@@ -1,13 +1,20 @@
 import React from 'react';
 import { Award, CheckCircle, ShieldCheck, HardHat, FileCheck2, ArrowUpRight } from 'lucide-react';
 import aboutTowerImg from '../assets/images/about_commercial_tower_1790537336615.jpg';
-import { COMPANY_INFO } from '../data/mockData';
+import { COMPANY_INFO, INITIAL_ABOUT_CONTENT } from '../data/mockData';
+import { AboutContent, CompanyInfo } from '../types';
 
 interface AboutUsProps {
   onLearnMoreServices: () => void;
+  aboutContent?: AboutContent;
+  companyInfo?: CompanyInfo;
 }
 
-export const AboutUs: React.FC<AboutUsProps> = ({ onLearnMoreServices }) => {
+export const AboutUs: React.FC<AboutUsProps> = ({
+  onLearnMoreServices,
+  aboutContent = INITIAL_ABOUT_CONTENT,
+  companyInfo = COMPANY_INFO,
+}) => {
   return (
     <section id="about" className="py-20 sm:py-24 bg-white text-slate-900 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,8 +48,8 @@ export const AboutUs: React.FC<AboutUsProps> = ({ onLearnMoreServices }) => {
                   <Award className="w-6 h-6" />
                 </div>
                 <div>
-                  <div className="font-serif text-2xl font-bold text-gold-400">15+ Years</div>
-                  <div className="text-xs text-slate-300">Of Uncompromising Industry Excellence</div>
+                  <div className="font-serif text-2xl font-bold text-gold-400">{aboutContent.experienceBadgeYears || companyInfo.experienceYears}</div>
+                  <div className="text-xs text-slate-300">{aboutContent.experienceBadgeText}</div>
                 </div>
               </div>
             </div>
@@ -53,21 +60,21 @@ export const AboutUs: React.FC<AboutUsProps> = ({ onLearnMoreServices }) => {
             {/* Domain Kicker */}
             <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-600 mb-3">
               <HardHat className="w-4 h-4" />
-              <span>Pioneering Real Estate & Turnkey Builders</span>
+              <span>{aboutContent.kicker}</span>
             </div>
 
             {/* Primary Heading */}
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-navy-950 tracking-tight leading-tight">
-              About Khan Brothers & Builders
+              {aboutContent.heading}
             </h2>
 
             {/* Narrative Prose */}
             <p className="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-              Khan Brothers & Builders is one of Pakistan&apos;s most reputable and forward-thinking real estate development, investment, and construction firms. With a robust presence across Islamabad, Lahore, and Karachi, we bridge the gap between vision and execution.
+              {aboutContent.mainParagraph}
             </p>
 
             <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
-              We specialize in premium property sales and purchases, turnkey civil construction, high-yield commercial developments, and transparent overseas portfolio management. Our foundation rests upon four inviolable pillars: uncompromising structural quality, rigorous legal due diligence, cost transparency, and absolute customer satisfaction.
+              {aboutContent.secondaryParagraph}
             </p>
 
             {/* Key Value Checklist */}
@@ -109,28 +116,28 @@ export const AboutUs: React.FC<AboutUsProps> = ({ onLearnMoreServices }) => {
             <div className="mt-10 pt-8 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left">
               <div>
                 <div className="font-serif text-2xl sm:text-3xl font-extrabold text-navy-950 tabular-nums">
-                  {COMPANY_INFO.experienceYears}
+                  {companyInfo.experienceYears}
                 </div>
                 <div className="text-xs text-slate-500 font-medium mt-1">Years in Industry</div>
               </div>
 
               <div>
                 <div className="font-serif text-2xl sm:text-3xl font-extrabold text-navy-950 tabular-nums">
-                  {COMPANY_INFO.completedProjects}
+                  {companyInfo.completedProjects}
                 </div>
                 <div className="text-xs text-slate-500 font-medium mt-1">Delivered Projects</div>
               </div>
 
               <div>
                 <div className="font-serif text-2xl sm:text-3xl font-extrabold text-navy-950 tabular-nums">
-                  {COMPANY_INFO.happyClients}
+                  {companyInfo.happyClients}
                 </div>
                 <div className="text-xs text-slate-500 font-medium mt-1">Satisfied Families</div>
               </div>
 
               <div>
                 <div className="font-serif text-2xl sm:text-3xl font-extrabold text-gold-600 tabular-nums">
-                  {COMPANY_INFO.totalVolume}
+                  {companyInfo.totalVolume}
                 </div>
                 <div className="text-xs text-slate-500 font-medium mt-1">Transacted Value</div>
               </div>
